@@ -20,33 +20,33 @@ public class Server {
             this.socket = serverSocket.accept();
             this.readerServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             this.writerServer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("Error al conectar con el servidor");
         }
     }
+
     public void sendMessagetoClient(String serverMessage) {
-        try{
+        try {
             writerServer.write(serverMessage);
             writerServer.newLine(); // para esperar otro mensaje //
             writerServer.flush(); // mandar el mensaje //
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("Error enviando el mensaje");
         }
     }
+
     public void receiveMessageFromClient(Label temp) {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                while(socket.isConnected()) {
-                    try{
+                while (socket.isConnected()) {
+                    try {
                         String messageFromClient = readerServer.readLine();
                         MainController.labelUpdate(messageFromClient, temp);
-                    }
-                    catch (IOException e) {
+                    } catch (IOException e) {
                         System.out.println("Error recibiendo mensaje");
-                        break; // si hay error, sale del bucle //
+                        break; // si hay error, sale del buckle //
+                    }
                 }
             }
         }).start();
