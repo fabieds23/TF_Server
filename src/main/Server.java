@@ -42,7 +42,7 @@ public class Server {
                 while (socket.isConnected()) {
                     try {
                         String messageFromClient = readerServer.readLine();
-                        MainController.labelUpdate(messageFromClient, temp);
+                        System.out.println(messageFromClient);
                     } catch (IOException e) {
                         System.out.println("Error recibiendo mensaje");
                         break; // si hay error, sale del buckle //
