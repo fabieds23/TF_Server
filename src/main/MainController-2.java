@@ -33,7 +33,7 @@ public class MainController implements Initializable {
             System.out.println("Error al crear servidor");
         }
 
-        server.receiveMessageFromClient(esperaLabelServer);
+        server.receiveMessageFromClient();
         botonServer.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -41,7 +41,7 @@ public class MainController implements Initializable {
                 server.sendMessagetoClient(serverMessage);
             }
         });
-        }
+    }
     public static void labelUpdate(String messageFromClient, Label temp2){
         temp2.setText(messageFromClient);
     }
